@@ -1,0 +1,19 @@
+@import "../../VariablesAndMixins.scss";
+
+.underConstContainer {
+    margin: 200px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    &__title {
+        font-size: 70px;
+    }
+    &__linkToHome{
+        text-decoration: none;
+        font-size: 30px;
+    }
+
+}
