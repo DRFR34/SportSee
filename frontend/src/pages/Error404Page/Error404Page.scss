@@ -1,0 +1,32 @@
+@import "../../VariablesAndMixins.scss";
+
+
+.errorCode{
+    // padding: 4.063rem;
+    text-align: center;
+    color: $red-color;
+    font-size: 8rem;
+    font-weight: 700;
+    }
+
+
+.errorMsg{
+    // padding:1.25rem;
+    display: flex;  
+    flex-wrap: wrap;
+    justify-content: center;  
+    text-align: center;
+    color: $red-color;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.linkToHome{
+    display: block;
+    width: 100%;
+    // padding: 8.125rem 0;
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: 600;
+
+}
