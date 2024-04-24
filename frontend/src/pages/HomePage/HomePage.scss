@@ -1,0 +1,44 @@
+@import "../../VariablesAndMixins.scss";
+
+.homeHeader {
+    margin: 5rem auto;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+
+    &__title {
+        color: $darkGrey-color;
+        font-weight: 500;
+    }
+
+    &__homeUl {
+
+        padding: 2.5rem;
+        display: flex;
+        gap: 1.875rem;
+        list-style: none;
+
+    }
+
+    .userLink {
+        box-shadow: $shadow1;
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.625rem;
+        width: 12.5rem;
+        height: 5rem;
+        border-radius: 5px;
+        padding: 0.625rem 1.875rem;
+        background-color: $lightGrey-color;
+        text-decoration: none;
+        line-height: 3.75rem;
+        font-size: 1.875rem;
+        color: $darkGrey-color;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+    }
+}
