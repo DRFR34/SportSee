@@ -24,39 +24,38 @@ http://localhost:80/SportSee/community
 
 ### Dependencies used:
 
-"@testing-library/jest-dom": "^5.17.0",
-"@testing-library/react": "^13.4.0",
-"@testing-library/user-event": "^13.5.0",
-"axios": "^1.6.8",
-"prop-types": "^15.8.1",
-"react": "^18.2.0",
-"react-dom": "^18.2.0",
-"react-router-dom": "^6.22.3",
-"react-scripts": "5.0.1",
-"recharts": "^2.12.4",
-"sass": "^1.74.1",
-"web-vitals": "^2.1.4"
+axios: ^1.6.8
+prop-types: ^15.8.1
+react: ^18.2.0
+react-dom: ^18.2.0
+react-router-dom: ^6.22.3
+react-scripts: 5.0.1
+recharts: ^2.12.4
+sass: ^1.74.1
+web-vitals: ^2.1.4
+
 
 ### Installation process:
 
 Clone the repository :
-   -  git clone https://github.com/DRFR34/SportSee
+   -  `git clone https://github.com/DRFR34/SportSee`
 
-## Installing and launching Back-end:
-Go in the "Back-end" folder
+#### Installing and launching Back-end:
+Go in the "backend" folder
 
 Install all dependencies for Back-end:
 
-npm install or yarn
-Launch back-end on port 3000 (default port):
-npm run dev or yarn run dev
-Installing and launching Front-end:
-Go in "Front-end" folder
+`npm install` or `yarn`
+Launch the back-end  (default port = 3000):
+`npm start` or `yarn start`
 
-Install all dependencies for Front-end:
+#### Installing and launching Front-end:
+Go in the "frontend" folder
 
-npm install or yarn
-Launch front-end:
-npm start or yarn start
+##### Install all dependencies for the frontend:
+
+`npm install` or `yarn`
+##### Launch front-end:
+`npm start` or `yarn start`
 Front-end will launch at URL: http://localhost:3001/SportSee.
 
