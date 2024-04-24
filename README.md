@@ -1,4 +1,4 @@
-![SportSee](/Front-end/src/assets/images/logo.png)
+![SportSee](/frontend/src/assets/images/logo.png)
 
 # SportSee
 
@@ -16,46 +16,44 @@ To Mr. Emeric Tourel, my mentor, for his help and support, during the realizatio
   -  `http://localhost:80/SportSee/settings`
   -  `http://localhost:80/SportSee/community`
 
-## Installation:
-### Prerequisites:
+# Installation:
+## Prerequisites:
   -  [Git](https://git-scm.com)
   -  [Node](https://nodejs.org/en/) or [Yarn](https://yarnpkg.com/) for terminal commands
 
 
-### Dependencies used:
+## Dependencies used:
 
-axios: ^1.6.8
-prop-types: ^15.8.1
-react: ^18.2.0
-react-dom: ^18.2.0
-react-router-dom: ^6.22.3
-react-scripts: 5.0.1
-recharts: ^2.12.4
-sass: ^1.74.1
-web-vitals: ^2.1.4
+  -  axios: ^1.6.8
+  -  prop-types: ^15.8.1
+  -  react: ^18.2.0
+  -  react-dom: ^18.2.0
+  -  react-router-dom: ^6.22.3
+  -  react-scripts: 5.0.1
+  -  recharts: ^2.12.4
+  -  sass: ^1.74.1
+  -  web-vitals: ^2.1.4
 
 
-### Installation process:
+## Installation process:
 
 Clone the repository :
    -  `git clone https://github.com/DRFR34/SportSee`
 
-#### Installing and launching Back-end:
-Go in the "backend" folder
+### Installing and launching the back-end:
+  -  Go in the "backend" folder
 
-Install all dependencies for Back-end:
+  -  Install all dependencies for Back-end:
+     -  `npm install` or `yarn`
+  -  Launch the back-end  (default port = 3000):
+     -  `npm start` or `yarn start`
 
-`npm install` or `yarn`
-Launch the back-end  (default port = 3000):
-`npm start` or `yarn start`
+### Installing and launching Front-end:
+  -  Go in the "frontend" folder
 
-#### Installing and launching Front-end:
-Go in the "frontend" folder
-
-##### Install all dependencies for the frontend:
-
-`npm install` or `yarn`
-##### Launch front-end:
-`npm start` or `yarn start`
-Front-end will launch at URL: http://localhost:3001/SportSee.
+  -  Install all dependencies for the frontend:
+     -  `npm install` or `yarn`
+  -  Launch front-end:
+     -  `npm start` or `yarn start`
+     - The front-end will launch at URL: http://localhost:3001/SportSee.
 
