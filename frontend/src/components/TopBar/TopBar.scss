@@ -1,16 +1,17 @@
 @import "../../VariablesAndMixins.scss";
 
 .header {
-    height: 91px;
+    height: 5.625rem;
+    box-shadow: $shadow2;
+    padding: 0 5.625rem 0 1.875rem;
     background: $black-color ;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 90px 0 30px;
     color: $white-color;
 
     &__nav {
-        width: 1240px;
+        width: 77.5rem;
         height: 100%;
         background: $black-color;
         display: flex;
@@ -18,7 +19,7 @@
         align-items: center;
 
         &__logo {
-            width: 178px;
+            width: 11.125rem;
 
         }
 
@@ -27,8 +28,8 @@
             text-decoration: none;
             font-weight: 500;
             font-style: normal;
-            font-size: 20px;
-            line-height: 20px;
+            font-size: 1.5rem;
+            line-height: 1.5rem;
         }
     }
 }
