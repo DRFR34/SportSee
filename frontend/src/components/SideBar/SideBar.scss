@@ -14,7 +14,12 @@
         transform: translateY(-2.8rem);
         flex-direction: column;
         align-items: center;
-        gap: 1.25rem;        
+        gap: 1.25rem;    
+        @include tablet-view{
+            position: fixed;
+            top: 50vh;
+            transform: translateY(-50%);
+        }    
     }
 
     &__footer {
