@@ -46,8 +46,9 @@ Clone the repository :
 
   -  Install all dependencies for Back-end:
      -  `npm install` or `yarn`
-  -  Launch the back-end  (default port = 3000):
+  -  Launch the back-end:
      -  `npm start` or `yarn start`
+     -   The back-end will launch at URL: `http://localhost:3000/`(default port)
 
 ### Installing and launching Front-end:
   -  Go in the "frontend" folder
@@ -56,5 +57,5 @@ Clone the repository :
      -  `npm install` or `yarn`
   -  Launch front-end:
      -  `npm start` or `yarn start`
-     - The front-end will launch at URL: `http://localhost:3001/SportSee`.
+     -   The front-end will launch at URL: `http://localhost:3001/SportSee`.
 
