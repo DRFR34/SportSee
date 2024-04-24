@@ -1,5 +1,7 @@
 ![SportSee](/frontend/src/assets/images/logo.png)
 
+<img src="/frontend/src/assets/images/logo.png" alt="SportSee" width="200"/>
+
 # SportSee
 
 Sportsee is the twelfth project of the OpenClassrooms training “Javascript Application Developer - React”.
