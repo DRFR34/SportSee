@@ -55,5 +55,5 @@ Clone the repository :
      -  `npm install` or `yarn`
   -  Launch front-end:
      -  `npm start` or `yarn start`
-     - The front-end will launch at URL: http://localhost:3001/SportSee.
+     - The front-end will launch at URL: `http://localhost:3001/SportSee`.
 
