@@ -1,3 +1,5 @@
+//== Variables ==
+
 $red-color : #E60000;
 $darkRed-color : #720303;
 $white-color: #FFFFFF;
@@ -6,11 +8,12 @@ $lightGrey-color: #FBFBFB;
 $mediumGrey-color: #C4C4C4;
 $darkGrey-color: #282D30;
 
-
 $shadow1 : rgba(0, 0, 0, 0.05) 0px 3px 4px;
 $shadow2: rgba(50, 50, 93, 0.25) 0px 10px 10px -5px, rgba(0, 0, 0, 0.3) 0px 8px 6px -8px;
 
 $borderRadius-small: 5px;
+
+//== Mixins ==
 
 @mixin isCentered {
     position: absolute;
