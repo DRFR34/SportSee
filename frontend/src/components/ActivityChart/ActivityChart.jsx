@@ -11,16 +11,24 @@ import {
   Bar
 } from 'recharts';
 
-import CustomTooltip from '../CustomTooltip/CustomTooltip';
+import CustomTooltip from '../CustomTooltip/CustomTooltip.jsx';
 import LoadingOrNoDataMsg from '../LoadingOrNoDataMsg/LoadingOrNoDataMsg';
 
 import ApiService from '../../utils/apiService';
 import './ActivityChart.scss';
 
-
+/**
+ * ActivityChart component displays a bar chart of daily activity.
+ * It fetches user activity data based on the current user ID.
+ * @
+ * @category React-Component
+ * @param {Object} props - Component props
+ * @param {number} props.currentUserId - ID of the current user
+ * @returns {JSX.Element} ActivityChart component
+ */
 export default function ActivityChart({ currentUserId }) {
 
-  const [userActivityData, setUserActivityData] = useState([]);
+  const [userActivityData, setUserActivityData] = useState({}); //is object
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -40,6 +48,7 @@ export default function ActivityChart({ currentUserId }) {
       <LoadingOrNoDataMsg
         isLoading={isLoading}
         expectedData={userActivityData}
+        
       />
 
       <div className="barChartCtnr">
@@ -47,7 +56,7 @@ export default function ActivityChart({ currentUserId }) {
           Activité quotidienne
         </h2>
 
-        <ResponsiveContainer >          
+        <ResponsiveContainer >
 
           <BarChart
             data={userActivityData.sessions}
@@ -87,7 +96,7 @@ export default function ActivityChart({ currentUserId }) {
             />
 
 
-            <Tooltip content={<CustomTooltip boxClass={'activityChartTooltip'} />} />
+            <Tooltip content={<CustomTooltip customTooltipClass={'activityChartTooltip'} />} />
 
             <Legend
               verticalAlign="top"
@@ -120,3 +129,7 @@ export default function ActivityChart({ currentUserId }) {
     </>
   );
 }
+
+ActivityChart.propTypes = {
+  currentUserId: PropTypes.number.isRequired,
+};
