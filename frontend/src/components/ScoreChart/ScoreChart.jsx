@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import {
+  RadialBarChart,
+  RadialBar,
+  ResponsiveContainer,
+  PolarAngleAxis
+} from 'recharts'
+
 import LoadingOrNoDataMsg from '../LoadingOrNoDataMsg/LoadingOrNoDataMsg';
 import ApiService from '../../utils/apiService.js'
-
-import { RadialBarChart, RadialBar, ResponsiveContainer, PolarAngleAxis } from 'recharts'
-
 import "./ScoreChart.scss";
 
+
+/**
+ * @description ScoreChart component displays a radial bar chart representing the user's score.
+ * It fetches the user's main data and renders the chart using Recharts library.
+ *
+ * @param {Object} props - Component props
+ * @param {number} props.currentUserId - ID of the current user
+ * @returns {JSX.Element} ScoreChart component
+ */
 export default function ScoreChart({ currentUserId }) {
 
   const [userMainData, setUserMainData] = useState(null); //userMainData is an object
@@ -43,7 +57,7 @@ export default function ScoreChart({ currentUserId }) {
         width="90%"
         height="90%"
         className={'scoreChart__RespCntnr'}
-        >
+      >
 
         <RadialBarChart
           className='scoreChart__RespCntnr__radialBarChart'
@@ -81,7 +95,11 @@ export default function ScoreChart({ currentUserId }) {
         <span>de votre</span>
         <span>objectif</span>
       </div>
-      
+
     </article>
   )
 }
+
+ScoreChart.propTypes = {
+  currentUserId: PropTypes.number.isRequired
+};
