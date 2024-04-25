@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import LoadingOrNoDataMsg from '../LoadingOrNoDataMsg/LoadingOrNoDataMsg';
 import ApiService from '../../utils/apiService.js'
 
@@ -6,6 +8,14 @@ import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, Radar, Pola
 
 import './PerformancesChart.scss'
 
+/**
+ * PerformancesChart component displays a radar chart showing user performance data.
+ * It fetches the user's performance data and renders the chart using Recharts library.
+ *
+ * @param {Object} props - Component props
+ * @param {number} props.currentUserId - ID of the current user
+ * @returns {React.Element} PerformancesChart component
+ */
 
 export default function PerformancesChart({ currentUserId }) {
 
@@ -36,7 +46,7 @@ export default function PerformancesChart({ currentUserId }) {
         kind: userPerformance.kind[performance.kind.toString()]
     }));
 
-    // Object used PolarAngleAxis
+    // Object used by PolarAngleAxis.tickFormatter
     const translatedLabels = {
         cardio: 'cardio',
         energy: 'énergie',
@@ -44,31 +54,46 @@ export default function PerformancesChart({ currentUserId }) {
         strength: 'force',
         speed: 'vitesse',
         intensity: 'intensité'
-      };
-    
+    };
+
 
     return (
         <div className='radarContainer'>
             <ResponsiveContainer width="95%" >
 
-                {/* reversing of the data order for compliance with Figma Mockup */}
-              <RadarChart outerRadius="70%" width={268} height={245} data={[...perfsDataWithLabels].reverse()}>
+                <RadarChart
+                    outerRadius="70%"
+                    width={268}
+                    height={245}
+                    data={[...perfsDataWithLabels].reverse()} // reversing of the data order for compliance with Figma Mockup
+                >
 
-                    <PolarGrid radialLines={false}  />
+                    <PolarGrid radialLines={false} />
 
 
-                  <PolarAngleAxis dataKey="kind" tick={{style: { fontSize: 10, fontWeight:100, letterSpacing:1.1  }}} tickFormatter={(labelValue) => translatedLabels[labelValue]} />
+                    <PolarAngleAxis
+                        dataKey="kind"
+                        tick={{ style: { fontSize: 10, fontWeight: 100, letterSpacing: 1.1 } }}
+                        tickFormatter={(labelValue) => translatedLabels[labelValue]} />
 
-                  <PolarRadiusAxis
-                tickCount={6} // for compliance with mockup
-                tick={false}
-                axisLine={false}
-            />
+                    <PolarRadiusAxis
+                        tickCount={6} // for compliance with mockup
+                        tick={false}
+                        axisLine={false}
+                    />
 
-                  <Radar dataKey='value' stroke="#ff0101" fill="#ff0101" fillOpacity={0.7} />
+                    <Radar
+                        dataKey='value'
+                        stroke="#ff0101"
+                        fill="#ff0101"
+                        fillOpacity={0.7} />
                 </RadarChart>
             </ResponsiveContainer>
 
-     </div> 
+        </div>
     )
 }
+
+PerformancesChart.propTypes = {
+    currentUserId: PropTypes.number.isRequired
+};
