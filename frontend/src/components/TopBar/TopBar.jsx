@@ -4,6 +4,11 @@ import { NavLink } from 'react-router-dom';
 import './TopBar.scss';
 import logo from "../../assets/images/logo.png";
 
+/**
+ *@description TopBar component displays a top navigation bar with links and a logo.
+ *
+ * @returns {React.Element} TopBar component
+ */
 export default function TopBar() {
   return (
     <header className='header'>
@@ -45,3 +50,7 @@ export default function TopBar() {
     </header>
   )
 }
+
+TopBar.propTypes = {
+  // No props for this component
+};
