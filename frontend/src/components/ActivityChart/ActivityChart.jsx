@@ -17,14 +17,13 @@ import LoadingOrNoDataMsg from '../LoadingOrNoDataMsg/LoadingOrNoDataMsg';
 import ApiService from '../../utils/apiService';
 import './ActivityChart.scss';
 
+
 /**
- * ActivityChart component displays a bar chart of daily activity.
- * It fetches user activity data based on the current user ID.
- * @
+ * ActivityChart component displays a bar chart of daily activity.It fetches user activity data based on the current user ID.
  * @category React-Component
- * @param {Object} props - Component props
- * @param {number} props.currentUserId - ID of the current user
- * @returns {JSX.Element} ActivityChart component
+ * @export
+ * @param {number} props.currentUserId  ID of the current user
+ * @returns {React.Element} ActivityChart component
  */
 export default function ActivityChart({ currentUserId }) {
 
@@ -91,12 +90,15 @@ export default function ActivityChart({ currentUserId }) {
               yAxisId="kilogram"
               dataKey="kilogram"
               orientation="right"
-              tick={{ fill: '#9B9EAC', style: { fontSize: 14 } }} tickCount={3}
+              tick={{ fill: '#9B9EAC', style: { fontSize: 14 } }} 
+              tickCount={3}
               domain={['dataMin-2', 'dataMax+1']}
             />
 
 
-            <Tooltip content={<CustomTooltip customTooltipClass={'activityChartTooltip'} />} />
+            <Tooltip 
+            content={<CustomTooltip customTooltipClass={'activityChartTooltip'} />} 
+            />
 
             <Legend
               verticalAlign="top"
