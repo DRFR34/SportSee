@@ -1,18 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import TopBar from '../components/TopBar/TopBar';
 import SideBar from '../components/SideBar/SideBar';
 import HomePage from '../pages/HomePage/HomePage.jsx';
-// import ProfilePage from '../pages/ProfilePage/ProfilePage.jsx';
 import ProfilePage from '../pages/ProfilePage/ProfilePage.jsx';
 import SettingsPage from '../pages/SettingsPage/SettingsPage.jsx';
 import CommunityPage from '../pages/CommunityPage/CommunityPage.jsx';
 import Error404Page from '../pages/Error404Page/Error404Page.jsx';
 
 import "./App.scss"
-
-
-
 
 
 export default function App() {
