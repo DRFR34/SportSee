@@ -1,42 +1,95 @@
 
 
-import React from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './HomePage.scss'
 
 import karlImg from '../../assets/images/Karl.png';
 import ceciliaImg from '../../assets/images/Cecilia.png';
+import SwitchBtn from '../../components/SwitchBtn/SwitchBtn';
+import { serverPort } from '../../utils/apiService';
 
+import apiService from '../../utils/apiService';
 
 /**
- * @description HomePage component renders the home page content.
+ * HomePage component renders the home page content.
  * Currently under construction, the page displays a list of 2 test users with links to their profiles.
- *
+ *This page also provides a switch button to choose between the 2 servers status, Ok or OOS.
  * @returns {JSX.Element} HomePage component
  */
 export default function HomePage() {
-    return (
-            <main>
-                <div className='homeHeader'>
-                    <h1 className="homeHeader__title">Sélectionnez l'utilisateur </h1>
-                    <ul className='homeHeader__homeUl'>
-                        <li>
-                            <Link to="/profil/18"
-                                className='userLink' > <img src={ceciliaImg} alt="Cecilia" />
-                                Cecilia
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/profil/12"
-                                className='userLink' > <img src={karlImg} alt="Karl" />
-                                Karl
-                            </Link>
-                        </li>
 
-                    </ul>
-                </div>
-            </main>
+    // reinit the status of the no server modal, in the web Service, in case it was previously shown.
+    apiService.noSrvrModalShown = false;
+
+    const [switchBtnState, setSwitchBtnState] = useState(true); 
+    const switchBtnChange = () => {
+        setSwitchBtnState(!switchBtnState);
+    }
+
+    switchBtnState
+        ? setServerPort(3000)
+        : setServerPort(3005);
+
+
+    /**
+     * Set the server port value.
+     *
+     * @param {number} newValue - The new value to set for the server port.
+     * @return {void} 
+     */
+    function setServerPort(newValue) {
+        serverPort.value = newValue;
+    }
+    setServerPort.propTypes = {
+        newValue: PropTypes.number.isRequired
+    };
+
+
+    return (
+        <main >
+            <div className='homeHeader'>
+                <h1 className="homeHeader__title">Paramétrez l'utilisation du site </h1>
+                <br />
+
+            </div>
+            <div className="switchBtnCtnr">
+                <h2 className="homeSubtitle">
+                    Choisissez l'état du serveur
+                </h2>
+
+                <SwitchBtn
+                    textOn="Ok"
+                    textOff="HS"
+                    switchBtnValue={switchBtnState}
+                    switchBtnChange={switchBtnChange}
+                />
+
+            </div>
+            <div className="usersCtnr">
+                <h2 className="homeSubtitle">
+                    Choisissez un utilisateur
+                </h2>
+                <ul className='usersCtnr__usersUl'>
+                    <li>
+                        <Link key="18" to="/profil/18"
+                            className='userLink' > <img src={ceciliaImg} alt="Cecilia" />
+                            Cecilia
+                        </Link>
+                    </li>
+                    <li>
+                        <Link key="12" to="/profil/12"
+                            className='userLink' > <img src={karlImg} alt="Karl" />
+                            Karl
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+
+
+        </main>
     )
 }
 
