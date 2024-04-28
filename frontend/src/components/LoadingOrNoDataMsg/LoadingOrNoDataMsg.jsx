@@ -14,7 +14,6 @@ export default function LoadingOrNoDataMsg({ isLoading, expectedData }) {
 
   return (
     <div className='LoadingOrNoDataMsg'>
-      {isLoading && <div className="loading-message">Chargement en cours...</div>}
       {!expectedData && <div className="error-message">Aucune donnée n'est disponible pour l'utilisateur spécifié.</div>}
     </div>
   )
