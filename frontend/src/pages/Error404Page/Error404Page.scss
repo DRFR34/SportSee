@@ -2,13 +2,13 @@
 
 
 .errorCode{
-    padding: 5rem 0;
+    padding: 12rem 0 2rem;
     text-align: center;
     color: $red-color;
     font-size: 8rem;
     font-weight: 700;
     @include tablet-view{
-        padding: 12rem 0 5rem;
+        padding: 18rem 0 2rem;
     }
     }
 
@@ -20,7 +20,7 @@
     text-align: center;
     color: $red-color;
     line-height: 5rem;
-    font-size: 1.25rem;
+    // font-size: 1.25rem;
     font-weight: 500;
 
 }
@@ -30,7 +30,7 @@
     width: 100%;
     text-decoration: none;
     text-align: center;
-    font-size: 1.125rem;
+    font-size: 1.5rem;
     font-weight: 600;
 
 }
