@@ -14,7 +14,7 @@ import {
 import CustomTooltip from '../CustomTooltip/CustomTooltip.jsx';
 import LoadingOrNoDataMsg from '../LoadingOrNoDataMsg/LoadingOrNoDataMsg';
 
-import ApiService from '../../utils/apiService';
+import ApiService from '../../utils/apiService.js';
 import './ActivityChart.scss';
 
 
@@ -47,7 +47,7 @@ export default function ActivityChart({ currentUserId }) {
       <LoadingOrNoDataMsg
         isLoading={isLoading}
         expectedData={userActivityData}
-        
+
       />
 
       <div className="barChartCtnr">
@@ -90,14 +90,14 @@ export default function ActivityChart({ currentUserId }) {
               yAxisId="kilogram"
               dataKey="kilogram"
               orientation="right"
-              tick={{ fill: '#9B9EAC', style: { fontSize: 14 } }} 
+              tick={{ fill: '#9B9EAC', style: { fontSize: 14 } }}
               tickCount={3}
               domain={['dataMin-2', 'dataMax+1']}
             />
 
 
-            <Tooltip 
-            content={<CustomTooltip customTooltipClass={'activityChartTooltip'} />} 
+            <Tooltip
+              content={<CustomTooltip customTooltipClass={'activityChartTooltip'} />}
             />
 
             <Legend
