@@ -5,20 +5,13 @@ import HomePage from '../../pages/HomePage/HomePage.jsx';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage.jsx';
 import SettingsPage from '../../pages/SettingsPage/SettingsPage.jsx';
 import CommunityPage from '../../pages/CommunityPage/CommunityPage.jsx';
-import Error404Page from '../../pages/Error404Page/Error404Page.jsx';
+import Error404Page, { p404Options } from '../../pages/Error404Page/Error404Page.jsx';
 
 /**
  * Component for rendering the site routes.
- * @returns {JSX.Element} The site routes component.
+ * @returns {JSX.Element.Component} The site routes component.
  */
 export default function SiteRoutes() {
-
-    const p404Options = {
-        opt1 : {
-            errorText: "😕 Aucun utilisateur n'a été séléctionné.",
-            homeLinkText: "Retouner à la page d’accueil pour sélectionner un utilisateur."
-        }
-    }
 
     return (
         <>
