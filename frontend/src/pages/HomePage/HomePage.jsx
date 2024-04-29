@@ -22,9 +22,9 @@ import apiService from '../../utils/apiService';
 export default function HomePage() {
 
     // reinit the status of the no server modal, in the web Service, in case it was previously shown.
-    apiService.noSrvrModalShown = false;
+    apiService.srvrOffModalShown = false;
 
-    const [switchBtnState, setSwitchBtnState] = useState(true); 
+    const [switchBtnState, setSwitchBtnState] = useState(true);
     const switchBtnChange = () => {
         setSwitchBtnState(!switchBtnState);
     }
