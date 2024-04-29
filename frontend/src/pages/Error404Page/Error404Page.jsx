@@ -27,9 +27,10 @@ export default function error404Page({errorText='😕 La page demandée est intr
   return (
     <main>
       <h1 className="errorCode">404</h1>
-      <p className="errorMsg">
+      <h2 className="errorMsg">
         <span>{errorText}</span>
-      </p>
+      </h2>
+      <br />
       <Link className="linkToHome" to="/"> {homeLinkText}</Link>
     </main>
   )
