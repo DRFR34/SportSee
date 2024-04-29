@@ -5,7 +5,8 @@ import HomePage from '../../pages/HomePage/HomePage.jsx';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage.jsx';
 import SettingsPage from '../../pages/SettingsPage/SettingsPage.jsx';
 import CommunityPage from '../../pages/CommunityPage/CommunityPage.jsx';
-import Error404Page, { p404Options } from '../../pages/Error404Page/Error404Page.jsx';
+import Error404Page from '../../pages/Error404Page/Error404Page.jsx';
+import UnderConstruction, { UnderCTextsOptions } from '../UnderConstruction/UnderConstruction.jsx';
 
 /**
  * Component for rendering the site routes.
@@ -46,9 +47,9 @@ export default function SiteRoutes() {
                 <Route
                     path="/profil/"
                     element={
-                        <Error404Page
-                            errorText={p404Options.opt1.errorText}
-                            homeLinkText={p404Options.opt1.homeLinkText}
+
+                        <UnderConstruction margin="200px 0 0 0"
+                            additionalText={UnderCTextsOptions.opt1}
                         />
                     } />
 
