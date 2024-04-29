@@ -37,7 +37,7 @@ export default function SessionsChart({ currentUserId }) {
     }
 
     getUserAverageSessions();
-    
+
   }, [currentUserId]);
 
   if (!userAverageSessions) {
@@ -54,16 +54,16 @@ export default function SessionsChart({ currentUserId }) {
   const userSessionsWithDay = userAverageSessions.sessions.map(session => {
     return { ...session, day: dayNames[session.day - 1] };
   });
-  
-/**
- * CustomTooltip component displays a customized tooltip for a Recharts chart.
- *Ref.: https://recharts.org/en-US/examples/CustomContentOfTooltip
- * @param {Object} props - Component props
- * @param {boolean} props.active - Whether the tooltip is active or not
- * @param {Object[]} props.payload - Array of data points to display in the tooltip
- * @param {string} props.boxClass - CSS class for the tooltip box
- * @returns {React.Element | null} CustomTooltip component
- */
+
+  /**
+   * CustomTooltip component displays a customized tooltip for a Recharts chart.
+   *Ref.: https://recharts.org/en-US/examples/CustomContentOfTooltip
+   * @param {Object} props - Component props
+   * @param {boolean} props.active - Whether the tooltip is active or not
+   * @param {Object[]} props.payload - Array of data points to display in the tooltip
+   * @param {string} props.boxClass - CSS class for the tooltip box
+   * @returns {React.Element | null} CustomTooltip component
+   */
   const CustomTooltip = ({ active, payload, boxClass }) => {
 
     if (active && payload && payload.length) {
@@ -80,19 +80,19 @@ export default function SessionsChart({ currentUserId }) {
   CustomTooltip.propTypes = {
     active: PropTypes.bool,
     payload: PropTypes.array,
-    boxClass: PropTypes.string,    
+    boxClass: PropTypes.string,
   }
- 
-/**
- * Renders a custom cursor component.
- * Ref. : https://github.com/recharts/recharts/issues/1816
- *
- * @param {Object} props - The properties passed to the component.
- * @param {Array} props.points - An array of points representing the cursor position.
- * @param {number} props.width - The width of the cursor rectangle.
- * @param {number} props.height - The height of the cursor rectangle.
- * @return {JSX.Element} The rendered custom cursor component.
- */
+
+  /**
+   * Renders a custom cursor component.
+   * Ref. : https://github.com/recharts/recharts/issues/1816
+   *
+   * @param {Object} props - The properties passed to the component.
+   * @param {Array} props.points - An array of points representing the cursor position.
+   * @param {number} props.width - The width of the cursor rectangle.
+   * @param {number} props.height - The height of the cursor rectangle.
+   * @return {JSX.Element} The rendered custom cursor component.
+   */
   const CustomCursor = (props) => {
     const { points, width, height } = props
     const { x } = points[0]
