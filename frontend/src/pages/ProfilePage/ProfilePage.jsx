@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 //-- Components
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
@@ -9,37 +10,39 @@ import ScoreChart from '../../components/ScoreChart/ScoreChart';
 import NutriCardsList from '../../components/NutriCardsList/NutriCardsList';
 import LoadingOrNoDataMsg from '../../components/LoadingOrNoDataMsg/LoadingOrNoDataMsg';
 
-//-- Data files
+//-- Web service
 import ApiService from '../../utils/apiService';
-
 
 //--  Style
 import "./ProfilePage.scss"
 
+/**
+ * @description ProfilePage component displays the profile page for a specific user.
+ * It capture the user ID from the URL, and transmits it, to the API service and to its childs components as props.
+ * It fetches the main user data and displays various charts and components related to the user.
+ * @params - none
+ * @returns {React.JSX.Element} ProfilePage component
+ */
+
 export default function ProfilePage() {
-  const { idSlug } = useParams();
 
-
+  const { idSlug } = useParams(); // idSlug's name defined in the router
   const currentUserId = Number(idSlug);
-
   const [userMainData, setUserMainData] = useState(null); //userMainData is object
   const [isLoading, setIsLoading] = useState(false);
 
+  // when currentUserId change, call the getUserMainData function.
   useEffect(() => {
-
     const getUserMainData = async () => {
       setIsLoading(true);
-
       const fetchedData = await ApiService.getUserMainData(currentUserId);
-
       setUserMainData(fetchedData);
-
       setIsLoading(false);
     }
 
     getUserMainData();
-  }, [currentUserId]);
 
+  }, [currentUserId]);
 
   if (!userMainData) {
     return (
@@ -49,9 +52,7 @@ export default function ProfilePage() {
     )
   }
 
-  const currentUserFirstName = userMainData
-    ? userMainData.firstName
-    : "prénom inconnu";
+  const currentUserFirstName = userMainData?.firstName;
 
   return (
 
@@ -82,7 +83,6 @@ export default function ProfilePage() {
         </div>
         <div className="dashboard__chartsCol2">
           < NutriCardsList currentUserId={currentUserId} />
-          {/* < NutriCardsList userMainData={userMainData} isLoading={isLoading} /> */}
         </div>
 
       </section>
@@ -90,3 +90,7 @@ export default function ProfilePage() {
 
   );
 }
+
+ProfilePage.propTypes = {
+  idSlug: PropTypes.string // extracted form the page's URL
+};
