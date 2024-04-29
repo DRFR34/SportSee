@@ -89,4 +89,4 @@ export default function NutriCardsList({ currentUserId }) {
 
 NutriCardsList.propTypes = {
     currentUserId: PropTypes.number.isRequired,
-  };
+};
