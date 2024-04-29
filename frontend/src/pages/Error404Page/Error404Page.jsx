@@ -5,6 +5,17 @@ import PropTypes from 'prop-types';
 
 import './Error404Page.scss'
 
+export const p404Options = {
+  opt1 : {
+      errorText: "😕 Aucun utilisateur n'a été séléctionné.",
+      homeLinkText: "Retouner à la page d’accueil pour sélectionner un utilisateur."
+  },
+  opt2 : {
+      errorText: "😕 Désolé, l'utilisateur demandé n'existe pas.",
+      homeLinkText: "Retouner à la page d’accueil pour sélectionner un utilisateur."
+  }
+}
+
 /**
  * Component for the error 404 page, is customizable following context, for a better user information.
  * @param {Object} props - The props for the error 404 page.
