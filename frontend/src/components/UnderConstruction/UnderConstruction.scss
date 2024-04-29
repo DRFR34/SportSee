@@ -1,14 +1,21 @@
 @import "../../VariablesAndMixins.scss";
 
 .underConstContainer {
+    padding: 5rem;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2.5rem;
+    @include tablet-view {
+        padding: 10rem;
+    }
 
     &__title {
         font-size: 3.125rem;
+        @include tablet-view {
+            font-size: 2.5rem;
+        }
     }
 
     &__linkToHome {
