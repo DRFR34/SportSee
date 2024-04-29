@@ -3,15 +3,17 @@
 .switchBtnBox{
     position: relative;
     cursor: pointer;
-    width: 6rem;
+    width: 5.2rem;
     height: 3rem;
+    box-shadow: $shadow-inner2;
     border-radius: 2rem;
-    border: 1px solid $mediumGrey-color;
-    background-color: $mediumGrey-color;
+    background-color: $lightGrey-color;
     
 
     &__switchBtn{
         position: absolute;
+        top : 50%;
+        transform: translateY(-50%);
         cursor: pointer;
         height: 3rem;
         width: 3rem;
@@ -19,7 +21,6 @@
         padding:  0.5rem;
         color: $white-color;
         text-align: center;
-        // line-height: 2rem;
         
         &--serverOn{
             left: 0;
