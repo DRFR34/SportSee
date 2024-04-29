@@ -1,6 +1,6 @@
 import axios from 'axios';
 import UserModelisedData from './dataModelisationClass';
-import noServerModal from '../utils/noServerModal/noServerModal';
+import serverOffModal from './serverOffModal/serverOffModal';
 import {
   USER_MAIN_DATA,
   USER_ACTIVITY,
@@ -31,7 +31,7 @@ const axiosAPI = axios.create({
  * Each of these methods serves to fetch the data from one of the API end-points.
  * If the loading of the distant data fails, the method substitute it with the corresponding local data.
  * When the local data is used, display a modal informing the user.
- *  In any case, the data keys modelised, and a JSON data is returned.
+ *  In any case, the data modelised, and a JSON data is returned.
  * If nor distant or local data is available, the method display an error message
  *
  * @export
@@ -40,10 +40,10 @@ const axiosAPI = axios.create({
  */
 export default class ApiService {
 
-  static noSrvrModalShown = false;
-  static noServerModal = noServerModal;
+  static srvrOffModalShown = false;
+  static serverOffModal = serverOffModal;
 
-  /**
+   /**
    * In case the server is not responding, fetch the local data, and displays an alert informing the user.
    * @static
    * @param {number} currentUserId - The ID of the current user
@@ -52,20 +52,35 @@ export default class ApiService {
    * @returns {object} - User data object
    */
   static handleServerError(currentUserId, idKey, relevantLocalData) {
+    try {
 
-    if (!ApiService.noSrvrModalShown) {
-      ApiService.noServerModal();
-      ApiService.noSrvrModalShown = true;
-    }
+      if (!ApiService.srvrOffModalShown) {
+        ApiService.serverOffModal();
+        ApiService.srvrOffModalShown = true;
+      }
 
-    const currentUserData = relevantLocalData.find((usersData) => usersData[idKey] === currentUserId);
+      const currentUserData = relevantLocalData.find((userData) => userData[idKey] === currentUserId);
 
-    if (currentUserData) {
-      return new UserModelisedData(JSON.parse(JSON.stringify(currentUserData)));
-    } else {
-      throw new Error('User not found');
+      if (currentUserData) {
+
+        // In doubt, serialize the currentUserData to JSON
+        const currentUserJson = JSON.stringify(currentUserData);
+
+        // Modeling the data, and parsing the JSON in an iterable object
+        return new UserModelisedData(JSON.parse(currentUserJson));
+
+      } else {
+        throw new Error('User not found');
+      }
+
+    } catch (error) {
+
+      console.error(error.message === 'User not found' ? 'Utilisateur non trouvé. Redirection vers la page 404...' : error);
+
     }
   }
+
+
 
   /**
    * Retrieves the main data for a user (online, else local).
@@ -76,6 +91,7 @@ export default class ApiService {
   static async getUserMainData(currentUserId) {
     try {
       const response = await axiosAPI.get(`${currentUserId}`);
+      console.log("response.data.data", response.data.data)
       return new UserModelisedData(response.data.data);
     } catch (Error) {
       return ApiService.handleServerError(currentUserId, "id", USER_MAIN_DATA)
@@ -83,7 +99,7 @@ export default class ApiService {
   }
 
   /**
-   * Retrieves the activity data for a user (online, if not local).
+   * Retrieves the activity data for a user (online, else local).
    * @static
    * @param {number} currentUserId - The ID of the current user
    * @returns {Promise<UserModelisedData>} - User activity data object
