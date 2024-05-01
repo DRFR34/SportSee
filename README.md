@@ -18,11 +18,11 @@ To Mr. Emeric Tourel, my mentor, for his guidance and support during the develop
 
 ### URL availables in this project:
 
-  -  `http://localhost:80/SportSee`
-  -  `http://localhost:80/SportSee/profil/12`
-  -  `http://localhost:80/SportSee/profil/18`
-  -  `http://localhost:80/SportSee/settings`
-  -  `http://localhost:80/SportSee/community`
+  -  `http://localhost:3001/SportSee`
+  -  `http://localhost:3001/SportSee/profil/12`
+  -  `http://localhost:3001/SportSee/profil/18`
+  -  `http://localhost:3001/SportSee/settings`
+  -  `http://localhost:3001/SportSee/community`
 
 # Installation:
 ## Prerequisites:
