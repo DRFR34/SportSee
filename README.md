@@ -1,6 +1,8 @@
 
 # SportSee
 
+Sportsee is the twelfth project of the OpenClassrooms training “Javascript Application Developer - React”.
+
 <div align="center">
 <!-- <img src="/frontend/src/assets/images/logo.png" alt="SportSee" width="100"  style="display: block; margin: 20px auto 0;" /> -->
 <br>
@@ -8,7 +10,7 @@
 </div>
 
 
-Sportsee is the twelfth project of the OpenClassrooms training “Javascript Application Developer - React”.
+
 
 
 ### Special thanks:
