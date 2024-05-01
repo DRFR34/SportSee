@@ -1,7 +1,8 @@
 
-<div style="display: flex; flex-direction: column; justify-content: center; gap:20px ;  align-items : center;">
-<img src="/frontend/src/assets/images/logo.png" alt="SportSee" width="100"/>
-<img src="/frontend/src/assets/images/demo.gif" alt="SportSee" width="500"/>
+<div >
+<img src="/frontend/src/assets/images/logo.png" alt="SportSee" width="100"  style="display: block; margin: 20px auto 0;" />
+<br>
+<img src="/frontend/src/assets/images/demo.gif" alt="SportSee" width="500" style="display: block; margin: 20px auto 0;" />
 </div>
 
 # SportSee
