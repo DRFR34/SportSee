@@ -1,11 +1,12 @@
 
+# SportSee
+
 <div align="center">
-<img src="/frontend/src/assets/images/logo.png" alt="SportSee" width="100"  style="display: block; margin: 20px auto 0;" />
+<!-- <img src="/frontend/src/assets/images/logo.png" alt="SportSee" width="100"  style="display: block; margin: 20px auto 0;" /> -->
 <br>
 <img src="/frontend/src/assets/images/demo.gif" alt="SportSee" width="500" style="display: block; margin: 20px auto 0;" />
 </div>
 
-# SportSee
 
 Sportsee is the twelfth project of the OpenClassrooms training “Javascript Application Developer - React”.
 
