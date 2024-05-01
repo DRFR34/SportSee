@@ -16,7 +16,7 @@ export default function UnderConstruction({ margin, additionalText }) {
   return (
     <div className='underConstContainer' style={{ margin: margin }} >
       <h1 className='underConstContainer__title' > 🚧 Page en construction 🚧</h1>
-      <p className='underConstContainer__additionalText'>{additionalText}</p>
+      <div className='underConstContainer__additionalText'>{additionalText}</div>
       <Link className="underConstContainer__linkToHome" to="/">Retourner sur la page d’accueil</Link>
     </div>
   )
