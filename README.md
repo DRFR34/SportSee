@@ -14,7 +14,7 @@ Sportsee is the twelfth project of the OpenClassrooms training “Javascript App
 
 
 ### Special thanks:
-To Mr. Emeric Tourel, my mentor, for his help and support, during the realization of this project
+To Mr. Emeric Tourel, my mentor, for his guidance and support during the development of this project.
 
 ### URL availables in this project:
 
