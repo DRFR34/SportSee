@@ -23,9 +23,7 @@ export default function LoadingOrNoDataMsg({ isLoading, expectedData }) {
     )
   }
 
-  if (!expectedData) {
-    const modal = document.querySelector('.modal');
-    modal && modal.classList.add('isInactivated');
+  if (!isLoading &&!expectedData ) {    
     return (
       <Error404Page
         errorText={p404Options.opt2.errorText}
