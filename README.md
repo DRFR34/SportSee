@@ -42,7 +42,6 @@ Clone the repository :
    -  `git clone https://github.com/DRFR34/SportSee`
 
    #### For information: Backend installation is not mandatory.
-    - the back-end's installation of the 
     - If no response from the backend server is detected, the site will automatically use the simulated data.
     - The only differences, for the user, will be: 
         -  increased loading time (due to waiting for server responses)
