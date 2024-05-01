@@ -1,5 +1,7 @@
 
 <img src="/frontend/src/assets/images/logo.png" alt="SportSee" width="200"/>
+<img src="/frontend/src/assets/images/demo.gif" alt="SportSee" width="500"/>
+
 
 # SportSee
 
