@@ -41,7 +41,15 @@ To Mr. Emeric Tourel, my mentor, for his help and support, during the realizatio
 Clone the repository :
    -  `git clone https://github.com/DRFR34/SportSee`
 
-### Installing and launching the back-end:
+   #### For information: Backend installation is not mandatory.
+    - the back-end's installation of the 
+    - If no response from the backend server is detected, the site will automatically use the simulated data.
+    - The only differences, for the user, will be: 
+        -  increased loading time (due to waiting for server responses)
+        -  the appearance of a message box, informing the user of the server's non-response, and the use of local data.
+
+### Installing and launching the backend :  
+
   -  Go in the "backend" folder
 
   -  Install all dependencies for Back-end:
