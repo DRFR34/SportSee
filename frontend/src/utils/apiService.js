@@ -1,12 +1,12 @@
 import axios from 'axios';
 import UserModelisedData from './dataModelisationClass';
 import serverOffModal from './serverOffModal/serverOffModal';
-import {
-  USER_MAIN_DATA,
-  USER_ACTIVITY,
-  USER_AVERAGE_SESSIONS,
-  USER_PERFORMANCE,
-} from '../assets/data/mockedData';
+
+//  Mocked Data
+import usersActivityMock from '../MockedData/usersActivityMock.json';
+import usersAverageSessionsMock from '../MockedData/usersAverageSessionsMock.json';
+import usersPerformancesMock from '../MockedData/usersPerformancesMock.json';
+import usersMainDataMock from '../MockedData/usersMainDataMock.json';
 
 export let serverPort = {
   _value: '3000',
@@ -54,11 +54,12 @@ export default class ApiService {
   */
   static handleServerError(currentUserId, idKey, relevantLocalData) {
     try {
-
       //ApiService.isUserFound is used to avoid displaying the modal on Error 404 page
       if (!ApiService.srvrOffModalShown && ApiService.isUserFound) {
+
         ApiService.serverOffModal();
         ApiService.srvrOffModalShown = true;
+
       }
 
       const currentUserData = relevantLocalData.find((userData) => userData[idKey] === currentUserId);
@@ -66,16 +67,13 @@ export default class ApiService {
       if (currentUserData) {
 
         ApiService.isUserFound = true;
-
-        // In doubt, serialize the currentUserData to JSON
-        const currentUserJson = JSON.stringify(currentUserData);
-
-        // Modeling the data, and parsing the JSON in an iterable object => create a deep copy of currentUserData ( keeps it imutable)
-        return new UserModelisedData(JSON.parse(currentUserJson));
+        return new UserModelisedData(currentUserData);
 
       } else {
+
         ApiService.isUserFound = false;
         throw new Error('User not found');
+
       }
 
     } catch (error) {
@@ -94,13 +92,17 @@ export default class ApiService {
    * @returns {Promise<UserModelisedData>} - User main data object
    */
   static async getUserMainData(currentUserId) {
+
     try {
+
       const response = await axiosAPI.get(`${currentUserId}`);
-      console.log("response.data.data", response.data.data)
       return new UserModelisedData(response.data.data);
+
     } catch (Error) {
-      return ApiService.handleServerError(currentUserId, "id", USER_MAIN_DATA)
-    };
+
+      return ApiService.handleServerError(currentUserId, "id", usersMainDataMock);
+
+    }
   }
 
   /**
@@ -110,11 +112,16 @@ export default class ApiService {
    * @returns {Promise<UserModelisedData>} - User activity data object
    */
   static async getUserActivity(currentUserId) {
+
     try {
+
       const response = await axiosAPI.get(`${currentUserId}/activity`);
       return new UserModelisedData(response.data.data);
+
     } catch (Error) {
-      return ApiService.handleServerError(currentUserId, "userId", USER_ACTIVITY)
+
+      return ApiService.handleServerError(currentUserId, "userId", usersActivityMock);
+
     }
   }
 
@@ -125,11 +132,16 @@ export default class ApiService {
     * @returns {Promise<UserModelisedData>} - User average sessions data object
     */
   static async getUserAverageSessions(currentUserId) {
+
     try {
+
       const response = await axiosAPI.get(`${currentUserId}/average-sessions`);
       return new UserModelisedData(response.data.data);
+
     } catch (Error) {
-      return ApiService.handleServerError(currentUserId, "userId", USER_AVERAGE_SESSIONS)
+
+      return ApiService.handleServerError(currentUserId, "userId", usersAverageSessionsMock);
+
     }
   }
 
@@ -140,11 +152,16 @@ export default class ApiService {
      * @returns {Promise<UserModelisedData>} - User performance data object
      */
   static async getUserPerformance(currentUserId) {
+
     try {
+      
       const response = await axiosAPI.get(`${currentUserId}/performance`);
       return new UserModelisedData(response.data.data);
+
     } catch (Error) {
-      return ApiService.handleServerError(currentUserId, "userId", USER_PERFORMANCE)
+
+      return ApiService.handleServerError(currentUserId, "userId", usersPerformancesMock);
+      
     }
   }
 }
