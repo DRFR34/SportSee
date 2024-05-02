@@ -1,18 +1,16 @@
-import React from 'react'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 
 import './Error404Page.scss'
 
 export const p404Options = {
-  opt1 : {
-      errorText: "😕 Aucun utilisateur n'a été séléctionné.",
-      homeLinkText: "Retouner à la page d’accueil pour sélectionner un utilisateur."
+  opt1: {
+    errorText: "😕 Aucun utilisateur n'a été séléctionné.",
+    homeLinkText: "Retouner à la page d’accueil pour sélectionner un utilisateur."
   },
-  opt2 : {
-      errorText: "😕 Désolé, l'utilisateur demandé n'existe pas.",
-      homeLinkText: "Retouner à la page d’accueil pour sélectionner un utilisateur."
+  opt2: {
+    errorText: "😕 Désolé, l'utilisateur demandé n'existe pas.",
+    homeLinkText: "Retouner à la page d’accueil pour sélectionner un utilisateur."
   }
 }
 
@@ -23,8 +21,10 @@ export const p404Options = {
  * @param {string} props.homeLinkText - The text for the home link with a default 
  * @returns {JSX.Element} The error 404 page component.
  */
-export default function error404Page({errorText='😕 La page demandée est introuvable.', homeLinkText="Retouner à la page d'accueil."}) {
+export default function Error404Page({ errorText = '😕 La page demandée est introuvable.', homeLinkText = "Retouner à la page d'accueil." }) {
+
   return (
+
     <main>
       <h1 className="errorCode">404</h1>
       <h2 className="errorMsg">
@@ -36,7 +36,7 @@ export default function error404Page({errorText='😕 La page demandée est intr
   )
 }
 
-error404Page.propTypes = {
+Error404Page.propTypes = {
   errorText: PropTypes.string,
   homeLinkText: PropTypes.string
 }
