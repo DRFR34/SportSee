@@ -4,7 +4,7 @@ import './serverOffModal.scss';
 /**
  * Creates a modal for when the server is not responding.
  *
- * @return {undefined} No return value.
+ * @return {undefined} No returns any value.
  */
 export default function serverOffModal() {
 
@@ -18,7 +18,7 @@ export default function serverOffModal() {
         closeModalBtn.className = 'msgBox__closeModalBtn';
         closeModalBtn.textContent = 'Fermer'; 
         closeModalBtn.addEventListener('click', () => {
-            modal.classList.add('isInactivated');
+            modal.remove();
         });
 
             msgBox.innerHTML = `
