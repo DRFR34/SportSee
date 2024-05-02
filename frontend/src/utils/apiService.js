@@ -42,19 +42,21 @@ export default class ApiService {
 
   static srvrOffModalShown = false;
   static serverOffModal = serverOffModal;
+  static isUserFound = false;
 
-   /**
-   * In case the server is not responding, fetch the local data, and displays an alert informing the user.
-   * @static
-   * @param {number} currentUserId - The ID of the current user
-   * @param {string} idKey - The key used for user ID in the data
-   * @param {Array} relevantLocalData - Array of relevant local data objects
-   * @returns {object} - User data object
-   */
+  /**
+  * In case the server is not responding, fetch the local data, and displays an alert informing the user.
+  * @static
+  * @param {number} currentUserId - The ID of the current user
+  * @param {string} idKey - The key used for user ID in the data
+  * @param {Array} relevantLocalData - Array of relevant local data objects
+  * @returns {object} - User data object
+  */
   static handleServerError(currentUserId, idKey, relevantLocalData) {
     try {
 
-      if (!ApiService.srvrOffModalShown) {
+      //ApiService.isUserFound is used to avoid displaying the modal on Error 404 page
+      if (!ApiService.srvrOffModalShown && ApiService.isUserFound) {
         ApiService.serverOffModal();
         ApiService.srvrOffModalShown = true;
       }
@@ -63,13 +65,16 @@ export default class ApiService {
 
       if (currentUserData) {
 
+        ApiService.isUserFound = true;
+
         // In doubt, serialize the currentUserData to JSON
         const currentUserJson = JSON.stringify(currentUserData);
 
-        // Modeling the data, and parsing the JSON in an iterable object
+        // Modeling the data, and parsing the JSON in an iterable object => create a deep copy of currentUserData ( keeps it imutable)
         return new UserModelisedData(JSON.parse(currentUserJson));
 
       } else {
+        ApiService.isUserFound = false;
         throw new Error('User not found');
       }
 
