@@ -47,27 +47,20 @@ export default function ProfilePage() {
     );
   }
 
-
-  return (
-    <main>
-
+return (
+  <main>
+    {userisFound ? (
       <CallsSwitcher 
         currentUserId={currentUserId}
         setUserIsFound={setUserIsFound}
-      >
-        {({ isLoading, userMainData, userActivityData, userAverageSessions, userPerformance }) => (
-          
+        children={({ isLoading, userMainData, userActivityData, userAverageSessions, userPerformance }) => (
           <>
-
             <ProfileHeader 
               isLoading={isLoading}
               userMainData={userMainData}
             />
-
             <section className='dashboard'>
-
               <div className="dashboard__chartsCol1">
-
                 <div className='dashboard__chartsCol1__chartsRow1'>
                   <ActivityChart
                     isLoading={isLoading}
@@ -79,21 +72,17 @@ export default function ProfilePage() {
                     isLoading={isLoading}
                     userAverageSessions={userAverageSessions}
                   />
-
                   <PerformancesChart
                     isLoading={isLoading}
                     userPerformance={userPerformance}
                   />
-
                   <ScoreChart
                     isLoading={isLoading}
                     userMainData={userMainData}
                   />
-
                 </div>
               </div>
               <div className="dashboard__chartsCol2">
-                
                 <NutriCardsList
                   isLoading={isLoading}
                   userMainData={userMainData}
@@ -102,11 +91,17 @@ export default function ProfilePage() {
             </section>
           </>
         )}
-      </CallsSwitcher>
-    </main>
-  );
+      />
+    ) : (
+      <Error404Page
+        errorText={p404Options.opt2.errorText}
+        homeLinkText={p404Options.opt2.homeLinkText}
+      />
+    )}
+  </main>
+);
 }
 
 ProfilePage.propTypes = {
-  idSlug: PropTypes.string // extracted form the page's URL
+  currentUserId: PropTypes.number // extracted form the page's URL
 };
