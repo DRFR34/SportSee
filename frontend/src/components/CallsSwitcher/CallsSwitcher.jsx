@@ -9,7 +9,7 @@ import ApiService from '../../utils/apiService.js';
  * @param {function} props.setUserIsFound - A function to set whether the user is found.
  * @param {function} props.children - The children to render with the fetched data.
  * @returns {ReactNode} The rendered children with the fetched data.
- */export default function CallsSwitcher({ currentUserId, setUserIsFound, children }) {
+ */export default function CallsSwitcher({ currentUserId, setUserIsFound, createChildren }) {
 
 
   //  states declarations
@@ -54,7 +54,7 @@ import ApiService from '../../utils/apiService.js';
   }, [currentUserId]);
 
 //  Renders children with the fetched data
-  return children({
+  return createChildren({
     isLoading,
     userActivityData,
     userAverageSessions,
@@ -69,5 +69,5 @@ import ApiService from '../../utils/apiService.js';
 CallsSwitcher.propTypes = {
   currentUserId: PropTypes.number.isRequired,
   setUserIsFound: PropTypes.func.isRequired,
-  children: PropTypes.func.isRequired
+  createChildren: PropTypes.func.isRequired
 };
