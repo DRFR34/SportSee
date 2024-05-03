@@ -28,8 +28,6 @@ import './ActivityChart.scss';
  */
 export default function ActivityChart({ isLoading, userActivityData }) {
 
-  console.log(" userActivityData", userActivityData)
-
   if (!userActivityData || (userActivityData.sessions && userActivityData.sessions.length === 0)) {
     return (
       <article className='barChartCtnr'>
