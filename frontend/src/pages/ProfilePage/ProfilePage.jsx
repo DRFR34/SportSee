@@ -53,7 +53,7 @@ return (
       <CallsSwitcher 
         currentUserId={currentUserId}
         setUserIsFound={setUserIsFound}
-        children={({ isLoading, userMainData, userActivityData, userAverageSessions, userPerformance }) => (
+        createChildren={({ isLoading, userMainData, userActivityData, userAverageSessions, userPerformance }) => (
           <>
             <ProfileHeader 
               isLoading={isLoading}
