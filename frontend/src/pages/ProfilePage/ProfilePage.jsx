@@ -105,3 +105,4 @@ return (
 ProfilePage.propTypes = {
   currentUserId: PropTypes.number // extracted form the page's URL
 };
+
