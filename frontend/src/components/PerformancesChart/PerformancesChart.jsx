@@ -17,23 +17,10 @@ import './PerformancesChart.scss'
  * @returns {React.Element} PerformancesChart component
  */
 
-export default function PerformancesChart({ currentUserId }) {
+export default function PerformancesChart({ isLoading, userPerformance }) {
 
-    const [userPerformance, setUserPerformance] = useState(null); //userMainData is object
-    const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        const getUserPerformance = async () => {
-            setIsLoading(true);
-            const fetchedData = await ApiService.getUserPerformance(currentUserId);
-            setUserPerformance(fetchedData);
-            setIsLoading(false);
-        }
-
-        getUserPerformance();
-    }, [currentUserId]);
-
-    if (!userPerformance) {
+    if (!userPerformance?.data || ( userPerformance && userPerformance.data.length === 0)) {
         return (
             <div className='radarContainer'>
                 <LoadingOrNoDataMsg isLoading={isLoading} expectedData={userPerformance} />
@@ -95,5 +82,6 @@ export default function PerformancesChart({ currentUserId }) {
 }
 
 PerformancesChart.propTypes = {
-    currentUserId: PropTypes.number.isRequired
+    isLoading: PropTypes.bool.isRequired,
+    userPerformance: PropTypes.object
 };

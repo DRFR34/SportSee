@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import Error404Page, { p404Options } from '../../pages/Error404Page/Error404Page';
+
 
 
 import "./LoadingOrNoDataMsg.scss"
@@ -18,17 +18,17 @@ export default function LoadingOrNoDataMsg({ isLoading, expectedData }) {
   if (isLoading) {
     return (
       <div className='LoadingOrNoDataMsg'>
-        {isLoading && <div className="loading-message">⏳ Chargement en cours...</div>}
+        <div className="loading-message">⏳ Chargement en cours...</div>
       </div>
     )
   }
 
-  if (!isLoading &&!expectedData ) {    
+  // if (!isLoading && !expectedData ) {    
+  if (!isLoading ) {    
     return (
-      <Error404Page
-        errorText={p404Options.opt2.errorText}
-        homeLinkText={p404Options.opt2.homeLinkText}
-      />
+      <div className='LoadingOrNoDataMsg'>
+        <div className="loading-message">Aucune donnée disponible</div>
+      </div>
     )
   }
 }

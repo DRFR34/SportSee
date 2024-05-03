@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   ResponsiveContainer,
@@ -12,36 +12,45 @@ import {
 } from 'recharts';
 
 import CustomTooltip from '../CustomTooltip/CustomTooltip.jsx';
-import LoadingOrNoDataMsg from '../LoadingOrNoDataMsg/LoadingOrNoDataMsg.jsx';
+import LoadingOrNoDataMsg from '../LoadingOrNoDataMsg/LoadingOrNoDataMsg';
 
-
+import ApiService from '../../utils/apiService.js';
 import './ActivityChart.scss';
 
 
-
 /**
- * Renders the ActivityChart component.
- *
- * @param {boolean} isLoading - Indicates if the chart is currently loading.
- * @param {object} userActivityData - The data for the chart.
- * @return {JSX.Element} The rendered ActivityChart component.
+ * ActivityChart component displays a bar chart of daily activity.It fetches user activity data based on the current user ID.
+ * @category React-Component
+ * @export
+ * @param {number} props.currentUserId  ID of the current user
+ * @returns {React.Element} ActivityChart component
  */
-export default function ActivityChart({ isLoading, userActivityData }) {
+export default function ActivityChart({ currentUserId }) {
 
-  console.log(" userActivityData", userActivityData)
+  const [userActivityData, setUserActivityData] = useState({}); //is object
+  const [isLoading, setIsLoading] = useState(false);
 
-  if (!userActivityData || (userActivityData.sessions && userActivityData.sessions.length === 0)) {
-    return (
-      <article className='barChartCtnr'>
-        <LoadingOrNoDataMsg isLoading={isLoading} expectedData={userActivityData} />
-      </article>
-    )
-  }
+  useEffect(() => {
+    const fetchUserActivity = async () => {
+      setIsLoading(true);
+      const fetchedData = await ApiService.getUserActivity(currentUserId);
+      setUserActivityData(fetchedData);
+      setIsLoading(false);
+    }
+
+    fetchUserActivity();
+  }, [currentUserId]);
+
 
   return (
-    
+    <>
+      <LoadingOrNoDataMsg
+        isLoading={isLoading}
+        expectedData={userActivityData}
 
-      <article className="barChartCtnr">
+      />
+
+      <div className="barChartCtnr">
         <h2 className='barChartCtnr__title'>
           Activité quotidienne
         </h2>
@@ -118,14 +127,12 @@ export default function ActivityChart({ isLoading, userActivityData }) {
 
           </BarChart>
         </ResponsiveContainer>
-      </article >
-    
+      </div >
+    </>
   );
 }
 
 ActivityChart.propTypes = {
-
   isLoading: PropTypes.bool.isRequired,
   userActivityData: PropTypes.object.isRequired
-  
 };

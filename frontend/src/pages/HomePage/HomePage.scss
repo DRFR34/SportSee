@@ -60,5 +60,17 @@
 
         }
     }
+}
 
+.gitPageInfoBox{
+    border: solid 1px $red-color;
+    padding: 0 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+
+    & p{
+        line-height: 1.5rem;
+        text-align: justify;
+    }
 }

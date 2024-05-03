@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import NutritionCard from '../NutritionCard/NutritionCard';
-import ApiService from '../../utils/apiService';
+
 import LoadingOrNoDataMsg from '../LoadingOrNoDataMsg/LoadingOrNoDataMsg';
 
 import fatIcon from "../../assets/images/fat-icon.png";
@@ -21,25 +21,11 @@ import "./NutriCardsList.scss"
  * @param {number} props.currentUserId - ID of the current user
  * @returns {JSX.Element} NutriCardsList component
  */
-export default function NutriCardsList({ currentUserId }) {
+export default function NutriCardsList({ isLoading, userMainData }) {
 
-    const [userMainData, setUserMainData] = useState(null); //userMainData is object
-    const [isLoading, setIsLoading] = useState(false);
+  
 
-    useEffect(() => {
-
-        const getUserMainData = async () => {
-            setIsLoading(true);
-            const fetchedData = await ApiService.getUserMainData(currentUserId);
-            setUserMainData(fetchedData);
-            setIsLoading(false);
-        }
-
-        getUserMainData();
-
-    }, [currentUserId]);
-
-    if (!userMainData) {
+    if (!userMainData  || (userMainData && !userMainData.keyData)) {
         return (
             <aside className="nutriCardsContainer">
                 <LoadingOrNoDataMsg isLoading={isLoading} expectedData={userMainData} />
@@ -88,5 +74,6 @@ export default function NutriCardsList({ currentUserId }) {
 
 
 NutriCardsList.propTypes = {
-    currentUserId: PropTypes.number.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    userMainData: PropTypes.object
 };

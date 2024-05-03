@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   ResponsiveContainer,
@@ -11,36 +11,21 @@ import {
 } from 'recharts';
 
 import LoadingOrNoDataMsg from '../LoadingOrNoDataMsg/LoadingOrNoDataMsg';
-import ApiService from '../../utils/apiService.js'
 
 import './SessionsChart.scss';
 
+
 /**
- * @description - SessionsChart component displays a line chart representing the average session length.
- * It fetches the user's average sessions data and renders the chart using Recharts library.
+ * Renders the SessionsChart component displaying a line chart representing the average session length.
  *
  * @param {Object} props - Component props
- * @param {number} props.currentUserId - ID of the current user
+ * @param {boolean} props.isLoading - Indicates if data is loading
+ * @param {Object} props.userAverageSessions - Data for user's average sessions
  * @returns {React.Element} SessionsChart component
  */
-export default function SessionsChart({ currentUserId }) {
+export default function SessionsChart({ isLoading, userAverageSessions }) {
 
-  const [userAverageSessions, setUserAverageSessions] = useState(null); //userMainData is object
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const getUserAverageSessions = async () => {
-      setIsLoading(true);
-      const fetchedData = await ApiService.getUserAverageSessions(currentUserId);
-      setUserAverageSessions(fetchedData);
-      setIsLoading(false);
-    }
-
-    getUserAverageSessions();
-
-  }, [currentUserId]);
-
-  if (!userAverageSessions) {
+  if (!userAverageSessions || ( userAverageSessions && !userAverageSessions.sessions)) {
     return (
       <div className="sessionsChartContainer">
         <LoadingOrNoDataMsg isLoading={isLoading} expectedData={userAverageSessions} />
@@ -51,7 +36,7 @@ export default function SessionsChart({ currentUserId }) {
   //== Customization of the Chart 
   //* Add the name of the days of the week
   const dayNames = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-  const userSessionsWithDay = userAverageSessions.sessions.map(session => {
+  const userSessionsWithDay = userAverageSessions.sessions?.map(session => {
     return { ...session, day: dayNames[session.day - 1] };
   });
 
@@ -168,6 +153,7 @@ export default function SessionsChart({ currentUserId }) {
 }
 
 SessionsChart.propTypes = {
-  currentUserId: PropTypes.number.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  userAverageSessions: PropTypes.object
 };
 
