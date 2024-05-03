@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   RadialBarChart,
@@ -8,35 +8,22 @@ import {
 } from 'recharts'
 
 import LoadingOrNoDataMsg from '../LoadingOrNoDataMsg/LoadingOrNoDataMsg';
-import ApiService from '../../utils/apiService.js'
+
 import "./ScoreChart.scss";
 
 
 /**
- * @description ScoreChart component displays a radial bar chart representing the user's score.
- * It fetches the user's main data and renders the chart using Recharts library.
- *
- * @param {Object} props - Component props
- * @param {number} props.currentUserId - ID of the current user
+ * @description Displays a radial bar chart representing the user's score
+ * @param {Object} props Component props
+ * @param {number} props.isLoading Whether chart is currently loading
+ * @param {Object} props.userMainData User's main data to display in the chart
  * @returns {JSX.Element} ScoreChart component
  */
-export default function ScoreChart({ currentUserId }) {
+export default function ScoreChart({ isLoading, userMainData }) {
 
-  const [userMainData, setUserMainData] = useState(null); //userMainData is an object
-  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const getUserMainData = async () => {
-      setIsLoading(true);
-      const fetchedData = await ApiService.getUserMainData(currentUserId);
-      setUserMainData(fetchedData);
-      setIsLoading(false);
-    }
 
-    getUserMainData();
-  }, [currentUserId]);
-
-  if (!userMainData) {
+  if (!userMainData  || (userMainData && !userMainData.todayScore)) {
     return (
       <article className='scoreChart'>
         <LoadingOrNoDataMsg isLoading={isLoading} expectedData={userMainData} />
@@ -45,7 +32,7 @@ export default function ScoreChart({ currentUserId }) {
   }
 
   // RadialBarChart accepts an array of objects for param
-  const data = [{ name: 'score', value: (userMainData.score || userMainData.todayScore) }]
+  const data = [{ name: 'score', value: (userMainData.todayScore) }]
 
   return (
 
@@ -101,5 +88,6 @@ export default function ScoreChart({ currentUserId }) {
 }
 
 ScoreChart.propTypes = {
-  currentUserId: PropTypes.number.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  userMainData: PropTypes.object
 };

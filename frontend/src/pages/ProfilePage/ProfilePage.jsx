@@ -3,91 +3,107 @@ import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 //-- Components
+
+import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
+import CallsSwitcher from '../../components/CallsSwitcher/CallsSwitcher';
+import NutriCardsList from '../../components/NutriCardsList/NutriCardsList';
+import Error404Page, { p404Options } from '../Error404Page/Error404Page';
+
+  //  Charts components
 import ActivityChart from '../../components/ActivityChart/ActivityChart';
 import SessionsChart from '../../components/SessionsChart/SessionsChart';
 import PerformancesChart from '../../components/PerformancesChart/PerformancesChart';
 import ScoreChart from '../../components/ScoreChart/ScoreChart';
-import NutriCardsList from '../../components/NutriCardsList/NutriCardsList';
-import LoadingOrNoDataMsg from '../../components/LoadingOrNoDataMsg/LoadingOrNoDataMsg';
 
-//-- Web service
-import ApiService from '../../utils/apiService';
 
 //--  Style
 import "./ProfilePage.scss"
 
 /**
  * @description ProfilePage component displays the profile page for a specific user.
- * It capture the user ID from the URL, and transmits it, to the API service and to its childs components as props.
- * It fetches the main user data and displays various charts and components related to the user.
+ * It capture the user ID from the URL, and transmits it, to the to its child CallsSwitcher component as props.
+ * 
  * @params - none
  * @returns {React.JSX.Element} ProfilePage component
  */
 
 export default function ProfilePage() {
-
   const { idSlug } = useParams(); // idSlug's name defined in the router
   const currentUserId = Number(idSlug);
-  const [userMainData, setUserMainData] = useState(null); //userMainData is object
-  const [isLoading, setIsLoading] = useState(false);
+  const [userisFound, setUserIsFound] = useState(true);
+  
 
-  // when currentUserId change, call the getUserMainData function.
-  useEffect(() => {
-    const getUserMainData = async () => {
-      setIsLoading(true);
-      const fetchedData = await ApiService.getUserMainData(currentUserId);
-      setUserMainData(fetchedData);
-      setIsLoading(false);
-    }
 
-    getUserMainData();
+  
 
-  }, [currentUserId]);
-
-  if (!userMainData) {
+  if (!userisFound) {
     return (
-      <main className="nutriCardsContainer">
-        <LoadingOrNoDataMsg isLoading={isLoading} expectedData={userMainData} />
+      <main>
+        <Error404Page
+          errorText={p404Options.opt2.errorText}
+          homeLinkText={p404Options.opt2.homeLinkText}
+        />
       </main>
-    )
+    );
   }
 
-  const currentUserFirstName = userMainData?.firstName;
 
   return (
-
     <main>
-      <section className="profileHeader">
-        <h1 className="profileHeader__title">
-          <span className='profileHeader__title--black'>Bonjour </span>
 
-          <span className='profileHeader__title--red'>{currentUserFirstName}</span>
-          <span className='profileHeader__title--red'></span>
-        </h1>
-        <p className="profileHeader__text">Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
-      </section>
+      <CallsSwitcher 
+        currentUserId={currentUserId}
+        setUserIsFound={setUserIsFound}
+      >
+        {({ isLoading, userMainData, userActivityData, userAverageSessions, userPerformance }) => (
+          
+          <>
 
-      <section className='dashboard'>
-        <div className="dashboard__chartsCol1">
-          <div className='dashboard__chartsCol1__chartsRow1'>
+            <ProfileHeader 
+              isLoading={isLoading}
+              userMainData={userMainData}
+            />
 
-            <ActivityChart currentUserId={currentUserId} />
-          </div>
-          <div className='dashboard__chartsCol1__chartsRow2'>
-            <SessionsChart currentUserId={currentUserId} />
+            <section className='dashboard'>
 
-            <PerformancesChart currentUserId={currentUserId} />
+              <div className="dashboard__chartsCol1">
 
-            <ScoreChart currentUserId={currentUserId} />
-          </div>
-        </div>
-        <div className="dashboard__chartsCol2">
-          < NutriCardsList currentUserId={currentUserId} />
-        </div>
+                <div className='dashboard__chartsCol1__chartsRow1'>
+                  <ActivityChart
+                    isLoading={isLoading}
+                    userActivityData={userActivityData}
+                  />
+                </div>
+                <div className='dashboard__chartsCol1__chartsRow2'>
+                  <SessionsChart
+                    isLoading={isLoading}
+                    userAverageSessions={userAverageSessions}
+                  />
 
-      </section>
+                  <PerformancesChart
+                    isLoading={isLoading}
+                    userPerformance={userPerformance}
+                  />
+
+                  <ScoreChart
+                    isLoading={isLoading}
+                    userMainData={userMainData}
+                  />
+
+                </div>
+              </div>
+              <div className="dashboard__chartsCol2">
+                
+                <NutriCardsList
+                  isLoading={isLoading}
+                  userMainData={userMainData}
+                />
+              </div>
+            </section>
+          </>
+        )}
+      </CallsSwitcher>
     </main>
-
   );
 }
 

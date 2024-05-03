@@ -87,8 +87,6 @@ export default function HomePage() {
                     </li>
                 </ul>
             </div>
-
-
         </main>
     )
 }
