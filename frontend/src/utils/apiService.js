@@ -83,8 +83,6 @@ export default class ApiService {
     }
   }
 
-
-
   /**
    * Retrieves the main data for a user (online, else local).
    * @static
